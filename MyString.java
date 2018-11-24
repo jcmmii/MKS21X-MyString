@@ -1,3 +1,4 @@
+
 public class MyString implements CharSequence, Comparable<CharSequence>{
   private char[] data;
 
@@ -26,23 +27,30 @@ public class MyString implements CharSequence, Comparable<CharSequence>{
     return ret;
   }
 
-
-
   public String toString() {
     String ret = "";
-    for (int a = 0; a < this.length(); a++) {
+    for (int a = 0; a < data.length; a++) {
       ret = ret + data[a];
     }
     return ret;
+  }
 
+  public int compareTo(CharSequence Seq) {
+    if (Seq == null) throw new NullPointerException();
+    if (this.length() == 0 && Seq.length() != 0) return -1;
+    if (this.length() == 0 && Seq.length() == 0) return 0;
+    if (this.length() != 0 && Seq.length() == 0) return 1;
+    for (int x = 0; x < length(); x++) {
+      if (this.charAt(x) != Seq.charAt(x)) {
+        if (this.charAt(x) > Seq.charAt(x)) return 1;
+        if (this.charAt(x) < Seq.charAt(x)) return -1;
+      }
+    }
+    return 0;
   }
 
 }
 
-
-
-// CharSequence returns anything that implements CharSequence
-// including a String
 
 
 
