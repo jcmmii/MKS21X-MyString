@@ -9,17 +9,24 @@ public class MyString implements CharSequence, Comparable<CharSequence>{
   }
 
   public char charAt(int index) {
+      if (index < 0 || index >= data.length) throw new IndexOutOfBoundsException();
       return data[index];
   }
 
   public int length() {
-
-
+    return data.length;
   }
 
   public CharSequence subSequence(int start, int end) {
-
+    if (start < 0 || end < 0 || start > end || end > data.length) throw new IndexOutOfBoundsException();
+    String ret = "";
+    for (int x = start; x < end; x++) {
+      ret = ret + data[x];
+    }
+    return ret;
   }
+
+
 
   public String toString() {
     String ret = "";
